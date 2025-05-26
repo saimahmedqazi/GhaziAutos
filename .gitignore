@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Custom
+node_modules/
+.env.local
+.next/
+dist/
+studio/.sanity/**
+
