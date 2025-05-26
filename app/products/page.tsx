@@ -1,8 +1,15 @@
-// app/products/page.tsx
 import { client } from '../../sanity/lib/client';
 import Image from 'next/image';
 
-async function getProducts() {
+type Product = {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+};
+
+async function getProducts(): Promise<Product[]> {
   const query = `*[_type == "product"] {
     _id,
     name,
@@ -10,8 +17,7 @@ async function getProducts() {
     price,
     "imageUrl": image.asset->url
   }`;
-  const products = await client.fetch(query);
-  return products;
+  return await client.fetch(query);
 }
 
 export default async function ProductsPage() {
@@ -21,7 +27,7 @@ export default async function ProductsPage() {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-6">Our Products</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product: any) => (
+        {products.map((product) => (
           <div key={product._id} className="border p-4 rounded-lg shadow-sm">
             <Image
               src={product.imageUrl}
