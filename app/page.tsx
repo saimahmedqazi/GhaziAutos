@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import BlogSection from './components/BlogSection'
 import StatsSection from './components/StatsSection'
 import { Metadata } from 'next';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: 'Ghazi Autos',
@@ -31,6 +32,7 @@ export default async function Home() {
       <WhyChooseUs />
       <Footer/>
       </MotionDiv>
+      <SpeedInsights/>
     </>
   )
 }
